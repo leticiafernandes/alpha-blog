@@ -28,6 +28,11 @@
 	<hr>
 	<%= simple_format(@article.description) %>
 
+	<!-- -->
+	<% if @article.categories.any? %>
+		<p> Categories: <%= render @article.categories %>
+	<% end %>
+
 	<!-- articles actions -->
 	<div class="article-actions">
 		<% if logged_in? and (current_user == @article.user or current_user.admin?) %>
