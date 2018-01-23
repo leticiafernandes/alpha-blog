@@ -16,7 +16,7 @@ class UsersController < ApplicationController
 
 		if @user.save
 			session[:user_id] = @user.id
-  		flash[:success] = "Welcome to the alpha blog #{@user.username}"
+  		flash[:success] = "Bem vindo(a) ao blog #{@user.username}"
   		redirect_to user_path(@user)
   	else
   		render 'new'
@@ -28,7 +28,7 @@ class UsersController < ApplicationController
 
   def update
 		if @user.update(user_params)
-  		flash[:success] = "Your account was updated successfully!"
+  		flash[:success] = "Atualizações feitas com sucesso!"
   		redirect_to articles_path
 		else
   		render 'edit'
@@ -42,7 +42,7 @@ class UsersController < ApplicationController
 	def destroy
 		@user = User.find(params[:id])
 		@user.destroy
-		flash[:danger] = "User and all articles created by user have been deleted!"
+		flash[:danger] = "Usuários e todos os artigos criados por ele deletados!"
 		redirect_to users_path
 	end
 
@@ -63,14 +63,14 @@ class UsersController < ApplicationController
 
 		def require_same_user
 			if current_user != @user and !current_user.admin?
-				flash[:danger] = "You can only edit your account!"
+				flash[:danger] = "Você só pode editar sua própria conta!"
 				redirect_to root_path
 			end
 		end
 
 		def require_admin
 			if logged_in? and !current_user.admin?
-				flsh[:danger] = "Only admin users can perform that action!"
+				flsh[:danger] = "Somente admins podem realizar esta ação!"
 				redirect_to root_path
 			end
 		end

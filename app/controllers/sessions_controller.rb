@@ -9,16 +9,16 @@ class SessionsController < ApplicationController
 		if user and user.authenticate(params[:session][:password])
 			session[:user_id] = user.id
 			redirect_to user_path(user)
-			flash[:success] = "You have successfully logged in!"
+			flash[:success] = "olá =)"
 		else
-			flash.now[:danger] = "Email does not exist or password is wrong"
+			flash.now[:danger] = "Email não existe ou senha está incorreta"
 			render 'new'
 		end
 	end
 
 	def destroy
 		session[:user_id] = nil
-		flash[:success] = "You have logged out"
+		flash[:success] = "tchau =("
 		redirect_to root_path
 	end
 end
